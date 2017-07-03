@@ -1,0 +1,68 @@
+\begin{thebibliography}{10}
+
+\bibitem{birch}
+Birch datasets.
+\newblock \url{http://cs.joensuu.fi/sipu/datasets/}.
+
+\bibitem{av07}
+David Arthur and Sergei Vassilvitskii.
+\newblock $k$-means++: the advantages of careful seeding.
+\newblock In {\em ACM-SIAM Symposium on Discrete Algorithms}, pages 1027--1035,
+  2007.
+
+\bibitem{bahmani}
+Bahman Bahmani, Benjamin Moseley, Andrea Vattani, Ravi Kumar, and Sergei
+  Vassilvitskii.
+\newblock Scalable k-means++.
+\newblock {\em Proc. VLDB Endow.}, 5(7):622--633, March 2012.
+
+\bibitem{charikar02}
+Moses Charikar, Sudipto Guha, Éva Tardos, and David~B. Shmoys.
+\newblock A constant-factor approximation algorithm for the $k$-median problem.
+\newblock {\em Journal of Computer and System Sciences}, 65(1):129 -- 149,
+  2002.
+
+\bibitem{das08}
+Sanjoy Dasgupta.
+\newblock The hardness of $k$-means clustering.
+\newblock Technical Report CS2008-0916, Department of Computer Science and
+  Engineering, University of California San Diego, 2008.
+
+\bibitem{inaba}
+Mary Inaba, Naoki Katoh, and Hiroshi Imai.
+\newblock Applications of weighted voronoi diagrams and randomization to
+  variance-based k-clustering: (extended abstract).
+\newblock In {\em Proceedings of the Tenth Annual Symposium on Computational
+  Geometry}, SCG '94, pages 332--339, New York, NY, USA, 1994. ACM.
+
+\bibitem{jks}
+Ragesh Jaiswal, Amit Kumar, and Sandeep Sen.
+\newblock A simple {$D^2$}-sampling based {PTAS} for $k$-means and other
+  clustering problems.
+\newblock {\em Algorithmica}, 70(1):22--46, September 2014.
+
+\bibitem{KanungoMNPSW02}
+Tapas Kanungo, David~M. Mount, Nathan~S. Netanyahu, Christine~D. Piatko, Ruth
+  Silverman, and Angela~Y. Wu.
+\newblock A local search approximation algorithm for $k$-means clustering.
+\newblock In {\em Proc. 18th Annual Symposium on Computational Geometry}, pages
+  10--18, 2002.
+
+\bibitem{3D}
+M.~Kaul, Bin Yang, and C.S. Jensen.
+\newblock Building accurate 3{D} spatial networks to enable next generation
+  intelligent transportation systems.
+\newblock In {\em Mobile Data Management (MDM), 2013 IEEE 14th International
+  Conference on}, volume~1, pages 137--146, June 2013.
+
+\bibitem{cifar}
+Alex Krizhevsky.
+\newblock Learning multiple layers of features from tiny images.
+\newblock Technical report, University of Toronto, 2009.
+
+\bibitem{mnist}
+Yann LeCun, Corinna Cortes, and Christopher~J.C. Burges.
+\newblock The {MNIST} database of handwritten digits.
+\newblock \url{http://yann.lecun.com/exdb/mnist/}.
+
+\end{thebibliography}

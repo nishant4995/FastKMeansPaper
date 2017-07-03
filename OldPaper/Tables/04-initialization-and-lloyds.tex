@@ -1,0 +1,30 @@
+\begin{table}[h]
+\centering
+\begin{tabular}{| l | c | c | c | c | c | c | c |}
+\hline
+{\bf Algorithm} & & \pbox{2cm}{{\bf MNIST} \\\tiny($\times 10^{10}$)} & \pbox{2cm}{{\bf CIFAR} \\ \tiny{($\times 10^{10}$)}} & \pbox{2cm}{{\bf 3D} \\ \tiny{($\times 10^6$)}} & \pbox{2cm}{{\bf Birch1} \\ \tiny{($\times 10^{12}$)}} & \pbox{2cm}{{\bf Birch2} \\\tiny{($\times 10^{10}$)}} & \pbox{2cm}{{\bf Birch3} \\ \tiny{($\times 10^{12}$)}} \\
+\hline \hline
+\multirow{2}{*}{\small{\tt Random}} & mean & 
+$17.93$ & $47.43$ & $8.82$ & $111.75$ & $159.36$ & $49.33$\\ \cline{2-8}
+& \small{sd} & ${\scriptstyle 0.0562}$ & ${\scriptstyle 0.0599}$ & ${\scriptstyle 0.0001}$ & ${\scriptstyle 5.8873}$ & ${\scriptstyle 21.6450}$ & ${\scriptstyle 5.4267}$\\
+\hline \hline 
+\multirow{2}{*}{\tiny{\kmpp}} & mean & 
+$17.90$ & $47.46$ & $8.82$ & $106.24$ & $84.49$ & $40.41$\\ \cline{2-8}
+& \small{sd} & ${\scriptstyle 0.0556}$ & ${\scriptstyle 0.1048}$ & ${\scriptstyle 0.0004}$ & ${\scriptstyle 3.4275}$ & ${\scriptstyle 8.8590}$ & ${\scriptstyle 1.3834}$\\
+\hline \hline 
+\multirow{2}{*}{\pbox{5cm}{\small{\tt $D^2$-seeding} \\($N=k$)}} & mean & 
+$17.93$ & $47.45$ & $8.82$ & $106.31$ & $84.56$ & $40.45$\\ \cline{2-8}
+& \small{sd} & ${\scriptstyle 0.0546}$ & ${\scriptstyle 0.0711}$ & ${\scriptstyle 0.0005}$ & ${\scriptstyle 3.3346}$ & ${\scriptstyle 10.6210}$ & ${\scriptstyle 1.0226}$\\
+\hline \hline 
+\multirow{2}{*}{\pbox{5cm}{\small{\tt $D^2$-seeding} \\($N=10k$)}} & mean & 
+$17.91$ & $47.46$ & $8.82$ & $98.11$ & $45.67$ & $38.95$\\ \cline{2-8}
+& \small{sd} & ${\scriptstyle 0.0706}$ & ${\scriptstyle 0.0667}$ & ${\scriptstyle 0.0005}$ & ${\scriptstyle 2.1194}$ & ${\scriptstyle 3.8557}$ & ${\scriptstyle 0.5371}$\\
+\hline \hline 
+\multirow{2}{*}{\pbox{5cm}{\small{\tt $D^2$-seeding} \\($N=100k$)}} & mean & 
+$17.90$ & $47.44$ & $8.82$ & $97.58$ & $45.88$ & $39.02$\\ \cline{2-8}
+& \small{sd} & ${\scriptstyle 0.0445}$ & ${\scriptstyle 0.0606}$ & ${\scriptstyle 0.0005}$ & ${\scriptstyle 2.3682}$ & ${\scriptstyle 0.94}$ & ${\scriptstyle 0.54}$\\
+\hline 
+\end{tabular}
+\caption{This table gives the cost of the solution produced by the Lloyds algorithm with the initial centers obtained using the above seeding algorithms.}
+\label{table:4}
+\end{table}

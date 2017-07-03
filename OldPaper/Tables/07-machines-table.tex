@@ -1,0 +1,29 @@
+\begin{table}[h]
+\centering
+\begin{tabular}{| l | c | c | c | c | c | c | c |}
+\hline
+{\bf \# Machines} & & {\bf MNIST} & {\bf CIFAR} & {\bf 3D} & {\bf Birch1} & {\bf Birch2} & {\bf Birch3} \\
+\hline \hline
+\multirow{2}{*}{$M=1$} & mean & 
+$30.25$ & $98.08$ & $1.83$ & $274.91$ & $271.53$ & $272.50$\\ \cline{2-8}
+& \small{sd} & ${\scriptstyle 0.32}$ & ${\scriptstyle 0.45}$ & ${\scriptstyle 0.13}$ & ${\scriptstyle 0.59}$ & ${\scriptstyle 0.48}$ & ${\scriptstyle 0.65}$\\
+\hline \hline 
+\multirow{2}{*}{$M=5$} & mean & 
+$7.02$ & $22.31$ & $0.99$ & $152.64$ & $151.73$ & $155.62$\\ \cline{2-8}
+& \small{sd} & ${\scriptstyle 1.19}$ & ${\scriptstyle 2.28}$ & ${\scriptstyle 0.20}$ & ${\scriptstyle 5.98}$ & ${\scriptstyle 5.72}$ & ${\scriptstyle 6.04}$\\
+\hline \hline 
+\multirow{2}{*}{$M = 10$} & mean & 
+$3.53$ & $11.05$ & $0.56$ & $87.51$ & $87.22$ & $86.47$\\ \cline{2-8}
+& \small{sd} & ${\scriptstyle 0.55}$ & ${\scriptstyle 0.49}$ & ${\scriptstyle 0.06}$ & ${\scriptstyle 3.81}$ & ${\scriptstyle 4.93}$ & ${\scriptstyle 3.66}$\\
+\hline \hline 
+\multirow{2}{*}{$M = 20$} & mean & 
+$3.67$ & $8.53$ & $0.35$ & $46.77$ & $47.53$ & $48.04$\\ \cline{2-8}
+& \small{sd} & ${\scriptstyle 1.27}$ & ${\scriptstyle 2.45}$ & ${\scriptstyle 0.06}$ & ${\scriptstyle 2.07}$ & ${\scriptstyle 2.37}$ & ${\scriptstyle 1.87}$\\
+\hline \hline 
+\multirow{2}{*}{$M=40$} & mean & 
+$2.26$ & $6.72$ & $0.27$ & $37.16$ & $36.51$ & $38.50$\\ \cline{2-8}
+& \small{sd} & ${\scriptstyle 0.60}$ & ${\scriptstyle 0.77}$ & ${\scriptstyle 0.06}$ & ${\scriptstyle 1.26}$ & ${\scriptstyle 1.35}$ & ${\scriptstyle 1.52}$\\
+\hline 
+\end{tabular}
+\caption{Running time (in seconds) of \texttt{Par-$D^2$-seeding} as a function of $M$. $N$ is set to be $10k$.}
+\end{table}

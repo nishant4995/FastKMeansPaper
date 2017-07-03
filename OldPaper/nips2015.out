@@ -1,0 +1,9 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{The Algorithm}{}% 2
+\BOOKMARK [1][-]{section.3}{Experimental Analysis}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Datasets and machine}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Parameter N}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{Cost, number of lloyds iterations, and running time}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.4}{Parallel implementation and M}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.5}{Analysis of Par-D2-Seeding}{section.3}% 8
+\BOOKMARK [1][-]{section.4}{Conclusion}{}% 9

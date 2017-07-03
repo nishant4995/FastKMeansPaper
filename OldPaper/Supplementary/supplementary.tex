@@ -1,0 +1,173 @@
+\documentclass{article} % For LaTeX2e
+\usepackage{nips15submit_e,times}
+\usepackage{hyperref}
+\usepackage{url}
+%\documentstyle[nips14submit_09,times,art10]{article} % For LaTeX 2.09
+
+\usepackage{amsfonts}
+\usepackage{float}
+\usepackage{boxedminipage}
+\usepackage{multirow}
+\usepackage{pbox}
+\usepackage{graphicx}
+
+\newfloat{Algorithm}{hbtp}{lop}[section]
+\newcommand{\etal}{{\it et al.}}
+\newcommand{\eps}{\epsilon}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\kmpp}{{\tt $k$-means++seed}}
+\newcommand{\ds}{{\tt $D^2$-seeding}}
+\newcommand{\kmpar}{{\tt $k$-means$||$}}
+
+\title{Fast Parallel Initialisation for $k$-means \\
+\textcolor{red}{(Supplementary Material)}
+}
+
+%\author{
+%Dipankar Das\\
+%Intel Labs Bangalore\\
+%\texttt{dipankar.das@intel.com} \\
+%\And
+%Jatin Garg \\
+%IIT Delhi \\
+%\texttt{cs1110223@cse.iitd.ac.in} \\
+%\AND
+%Sachin Goel \\
+%IIT Delhi \\
+%\texttt{cs1110249@cse.iitd.ac.in} \\
+%\And
+%Ragesh Jaiswal\thanks{Thanks to funding agencies.} \\\\
+%IIT Delhi \\
+%\texttt{rjaiswal@cse.iitd.ac.in} \\
+%\And
+%Sandeep Sen \\
+%IIT Delhi \\
+%\texttt{ssen@cse.iitd.ac.in}
+%}
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to \LaTeX{} to determine where to break
+% the lines. Using \AND forces a linebreak at that point. So, if \LaTeX{}
+% puts 3 of 4 authors names on the first line, and the last on the second
+% line, try using \AND instead of \And before the third author name.
+
+\newcommand{\fix}{\marginpar{FIX}}
+\newcommand{\new}{\marginpar{NEW}}
+
+%\nipsfinalcopy % Uncomment for camera-ready version
+
+\begin{document}
+
+
+\maketitle
+
+%\begin{abstract}
+%\input{abstract}
+%\end{abstract}
+
+
+\section{Fine grained analysis of {\tt $D^2$-seeding} w.r.t. parameter $N$}
+We do a finer grained analysis of our algorithm's behaviour with respect to the parameter $N$.
+The following table gives the mean value of the cost taken over $10$ runs.
+
+\input{table-s1}
+
+Figure~\ref{fig:s1} gives a plot for the above results. It is clear from the results that the improvement in cost obtained by increase of $N$ tends to diminish after $N = 10k$.
+
+
+\begin{figure}
+\centering
+\includegraphics[scale=1]{Plots/N-plots}
+\caption{Plot of cost with respect to $N$ for \ds\ algorithm.}
+\label{fig:s1}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+\section{Comparing parallel seeding algorithms with parallel Lloyds with random seeding}
+In the main writeup, we have given the cost/time comparison of parallel versions of various seeding algorithms.
+Here, we add the cost/time values of the parallel version of the Lloyds algorithm with random seeding.
+This is to show that seeding algorithms indeed do give cost/time advantages.
+This is just to make sure that the quest for good ``seeding" algorithms are well motivated. 
+The pseudocode for the parallel version of Lloyds algorithm is given in Algorithm~\ref{alg:s1}.
+
+\input{table-s2}
+
+\begin{center}
+\begin{Algorithm}[ht]
+\begin{boxedminipage}{5.6in}
+{\tt Parallel-lloyds($X, k, C$)}
+
+\hspace{0.1in} (1) Repeat until convergence:
+
+\hspace{0.3in} (a) Forall $1 \leq j \leq k$, $P[j] \leftarrow \bar{0}$, $numPoints[j] \leftarrow 0$.
+
+\hspace{0.3in} (a) {\bf Parallel-for} $i \leftarrow $ $1$ to $|X|$:
+
+\hspace{0.5in} (i) $j \leftarrow \arg\min_{l} \left\{ ||X[j] - C[l]||^2 \right\}$.
+
+\hspace{0.5in} (ii) $P[j] \leftarrow P[j] + X[i]$; $numPoints[j] \leftarrow numPoints[j] + 1$.
+
+\hspace{0.3in} (b) {\bf For} $i \leftarrow 1$ to $k$
+
+\hspace{0.5in} (i) $C[i] \leftarrow \frac{P[i]}{numPoints[i]}$.
+
+\hspace{0.1in} (2) Return $C$.
+ \end{boxedminipage}
+\caption{The parallel version of the Lloyds algorithm.}
+\label{alg:s1}
+\end{Algorithm}
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Comparing \kmpp, \kmpar,  and \ds}
+All three algorithms, namely \kmpp, \kmpar, and \ds\ are sampling based algorithms with small differences.
+It is important to understand these subtle differences between these algorithms.
+\kmpp\ samples $k$ points in $k$ sequential steps where there is a clear forward dependency. 
+The sampling distribution of the $i^{th}$ step depends on the centers chosen in the previous $(i-1)$ steps.
+This forward dependency restricts parallelization since there is a $k$ size sequential component.
+The \kmpar\ algorithm was designed precisely to avoid this sequential component. 
+The main observation made was that if in each step, we sample more than one point independently then the sampled centers over even smaller number of iterations behave well.
+So, if we sample roughly $\ell = 2k$ points independently in each iteration over as small as $r=5$ iterations, then the sampled points are nice with respect to the cost. 
+However, the benefits (in terms of cost) of sampling points in a sequence as in \kmpp\ is compromised a bit.
+On the other hand, since the sequential component has been reduced, the algorithm allows faster parallel versions.
+This is the reason why the running time of \kmpar\ is consistently better than the other algorithms when $k$ is large (for Birch datasets $k$ is $100$).
+The \ds\ algorithm, takes a slightly different approach with the main goal of obtaining solutions with smaller cost. 
+It again picks centers in $k$ sequential steps as in the \kmpp\ algorithm.
+However, it tries to pick a ``better" center in each step. 
+It does so by independently sampling lots of points in each step. 
+It then clusters these independently sampled points into $k$ clusters, picks the largest cluster, and then takes the centroid of the largest cluster.
+
+The following hypothetical dataset highlights the difference between these three algorithms.
+We note that on this hypothetical 1-dimensional dataset, the \kmpp\ and \ds\ algorithms give the optimal result whereas the \kmpar algorithm gives an arbitrarily bad result. 
+Consider a large $k$ (say $k = 100$).
+There are $2^{k}$ points co-located at origin, $10k$ point co-located at $1$, $10k$ points co-located at $k$, $10k$ points co-located at $k^2$, ..., $10k$ points co-located at $k^{k-1}$.
+Clearly, the optimal $k$-means cost for this dataset is $0$.
+Now, both the \kmpp\ and \ds\ algorithms on this dataset will pick one center each from the $k$ different locations and hence give the optimal solution. 
+However, note the behaviour of \kmpar\ with $\ell = 2k$ and $r=5$. The first center is chosen uniformly at random, so most likely this will be a point from the origin. 
+Subsequently, it will pick roughly $2k$ points independently in the first iteration. 
+Given the distribution of the points, most likely all the points will be picked from location $k^{k-1}$.
+In the second iteration, most likely all the points will be chosen from the location $k^{k-2}$ and so on. 
+So, at the end of $r << k$ iterations, points from a only few locations (out of $k$) have been sampled and due to this, an arbitrarily bad non-optimal solution is produced.
+
+
+\end{document}

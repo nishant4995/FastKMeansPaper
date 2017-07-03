@@ -1,0 +1,52 @@
+This is BibTeX, Version 0.99d (TeX Live 2012)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: nips2015.aux
+The style file: plain.bst
+Database file #1: biblio.bib
+Warning--entry type for "birch" isn't style-file defined
+--line 41 of file biblio.bib
+Warning--entry type for "mnist" isn't style-file defined
+--line 48 of file biblio.bib
+Warning--to sort, need author or key in birch
+You've used 11 entries,
+            2118 wiz_defined-function locations,
+            568 strings with 5929 characters,
+and the built_in function-call counts, 4029 in all, are:
+= -- 394
+> -- 184
+< -- 6
++ -- 78
+- -- 62
+* -- 273
+:= -- 637
+add.period$ -- 33
+call.type$ -- 11
+change.case$ -- 65
+chr.to.int$ -- 0
+cite$ -- 12
+duplicate$ -- 156
+empty$ -- 319
+format.name$ -- 62
+if$ -- 872
+int.to.chr$ -- 0
+int.to.str$ -- 11
+missing$ -- 7
+newline$ -- 57
+num.names$ -- 20
+pop$ -- 73
+preamble$ -- 1
+purify$ -- 53
+quote$ -- 0
+skip$ -- 127
+stack$ -- 0
+substring$ -- 247
+swap$ -- 50
+text.length$ -- 6
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 44
+warning$ -- 1
+while$ -- 34
+width$ -- 13
+write$ -- 121
+(There were 3 warnings)

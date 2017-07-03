@@ -1,0 +1,30 @@
+\begin{table}[h]
+\centering
+\begin{tabular}{| l | c | c | c | c | c | c | c |}
+\hline
+{\bf Algorithm} & & {\bf MNIST} & {\bf CIFAR} & {\bf 3D} & {\bf Birch1} & {\bf Birch2} & {\bf Birch3} \\
+\hline \hline
+\multirow{2}{*}{\small{\tt Random}} & mean & 
+$19.48$ & $22.32$ & $32.38$ & $41.54$ & $19.56$ & $51.78$\\ \cline{2-8}
+& \small{sd} & ${\scriptstyle 7.94}$ & ${\scriptstyle 6.51}$ & ${\scriptstyle 6.25}$ & ${\scriptstyle 15.82}$ & ${\scriptstyle 9.06}$ & ${\scriptstyle 16.74}$\\
+\hline \hline 
+\multirow{2}{*}{\tiny{\kmpp}} & mean & 
+$22.14$ & $24.18$ & $23.18$ & $30.28$ & $16.30$ & $41.78$\\ \cline{2-8}
+& \small{sd} & ${\scriptstyle 6.60}$ & ${\scriptstyle 7.40}$ & ${\scriptstyle 10.04}$ & ${\scriptstyle 12.05}$ & ${\scriptstyle 6.55}$ & ${\scriptstyle 12.67}$\\
+\hline \hline 
+\multirow{2}{*}{\pbox{5cm}{\small{\tt $D^2$-seeding} \\($N=k$)}} & mean & 
+$20.28$ & $23.18$ & $21.2$ & $30.46$ & $13.46$ & $40.32$\\ \cline{2-8}
+& \small{sd} & ${\scriptstyle 6.52}$ & ${\scriptstyle 7.53}$ & ${\scriptstyle 8.98}$ & ${\scriptstyle 10.05}$ & ${\scriptstyle 5.21}$ & ${\scriptstyle 10.76}$\\
+\hline \hline 
+\multirow{2}{*}{\pbox{5cm}{\small{\tt $D^2$-seeding} \\($N=10k$)}} & mean & 
+$20.88$ & $23.36$ & $20.12$ & $13.92$ & $2.42$ & $32.58$\\ \cline{2-8}
+& \small{sd} & ${\scriptstyle 7.47}$ & ${\scriptstyle 6.90}$ & ${\scriptstyle 7.65}$ & ${\scriptstyle 7.66}$ & ${\scriptstyle 0.49}$ & ${\scriptstyle 10.35}$\\
+\hline \hline 
+\multirow{2}{*}{\pbox{5cm}{\small{\tt $D^2$-seeding} \\($N=100k$)}} & mean & 
+$23.26$ & $21.88$ & $16.8$ & $12.20$ & $3.00$ & $33.90$\\ \cline{2-8}
+& \small{sd} & ${\scriptstyle 8.06}$ & ${\scriptstyle 7.55}$ & ${\scriptstyle 6.68}$ & ${\scriptstyle 5.41}$ & ${\scriptstyle 0.79}$ & ${\scriptstyle 7.75}$\\
+\hline 
+\end{tabular}
+\caption{This table gives the number of lloyds steps until convergence when the algorithm is executed with the seed produced by the above algorithms.}
+\label{table:5}
+\end{table}

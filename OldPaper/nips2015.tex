@@ -1,0 +1,83 @@
+\documentclass{article} % For LaTeX2e
+\usepackage{nips15submit_e,times}
+\usepackage{hyperref}
+\usepackage{url}
+%\documentstyle[nips14submit_09,times,art10]{article} % For LaTeX 2.09
+
+\usepackage{amsfonts}
+\usepackage{float}
+\usepackage{boxedminipage}
+\usepackage{multirow}
+\usepackage{pbox}
+\usepackage{graphicx}
+
+\newfloat{Algorithm}{hbtp}{lop}[section]
+\newcommand{\etal}{{\it et al.}}
+\newcommand{\eps}{\epsilon}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\kmpp}{{\tt $k$-means++seed}}
+
+\title{Fast Parallel Initialization for $k$-means \\
+\tiny{PLEASE DO NOT DISTRIBUTE}}
+
+\author{
+Dipankar Das\\
+Intel Labs Bangalore\\
+\texttt{dipankar.das@intel.com} \\
+\And
+Jatin Garg \\
+IIT Delhi \\
+\texttt{cs1110223@cse.iitd.ac.in} \\
+\AND
+Sachin Goel \\
+IIT Delhi \\
+\texttt{cs1110249@cse.iitd.ac.in} \\
+\And
+Ragesh Jaiswal\thanks{Thanks to funding agencies.} \\\\
+IIT Delhi \\
+\texttt{rjaiswal@cse.iitd.ac.in} \\
+\And
+Sandeep Sen \\
+IIT Delhi \\
+\texttt{ssen@cse.iitd.ac.in}
+}
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to \LaTeX{} to determine where to break
+% the lines. Using \AND forces a linebreak at that point. So, if \LaTeX{}
+% puts 3 of 4 authors names on the first line, and the last on the second
+% line, try using \AND instead of \And before the third author name.
+
+\newcommand{\fix}{\marginpar{FIX}}
+\newcommand{\new}{\marginpar{NEW}}
+
+\nipsfinalcopy % Uncomment for camera-ready version
+
+\begin{document}
+
+
+\maketitle
+
+\begin{abstract}
+\input{abstract}
+\end{abstract}
+
+\input{introduction}
+
+\input{algorithm}
+
+\input{experiment}
+
+\vspace{-0.2in}
+
+\input{conclusion}
+
+%\newpage
+
+
+\bibliographystyle{plain}
+{\footnotesize \bibliography{biblio}}
+
+\end{document}

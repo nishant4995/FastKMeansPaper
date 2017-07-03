@@ -1,0 +1,30 @@
+\begin{table}[h]
+\centering
+\begin{tabular}{| l | c | c | c | c | c | c | c |}
+\hline
+{\bf Algorithm} & & {\bf MNIST} & {\bf CIFAR} & {\bf 3D} & {\bf Birch1} & {\bf Birch2} & {\bf Birch3} \\
+\hline \hline
+\multirow{2}{*}{\small{\tt Random}} & mean & 
+$0.0015$ & $0.0009$ & $0.0071$ & $0.0032$ & $0.0031$ & $0.0030$\\ \cline{2-8}
+& \small{sd} & ${\scriptstyle 0.0004}$ & ${\scriptstyle 0.0001}$ & ${\scriptstyle 0.0009}$ & ${\scriptstyle 0.0005}$ & ${\scriptstyle 0.0007}$ & ${\scriptstyle 0.0005}$\\
+\hline \hline 
+\multirow{2}{*}{\tiny{\kmpp}} & mean & 
+$29.8301$ & $96.0875$ & $1.8191$ & $136.9317$ & $133.9361$ & $134.245$\\ \cline{2-8}
+& \small{sd} & ${\scriptstyle 0.2941}$ & ${\scriptstyle 0.6122}$ & ${\scriptstyle 0.1252}$ & ${\scriptstyle 0.4061}$ & ${\scriptstyle 0.3542}$ & ${\scriptstyle 0.4413}$\\
+\hline \hline 
+\multirow{2}{*}{\pbox{5cm}{\small{\tt $D^2$-seeding} \\($N=k$)}} & mean & 
+$29.8118$ & $96.6231$ & $1.8755$ & $152.0806$ & $149.1547$ & $149.36$\\ \cline{2-8}
+& \small{sd} & ${\scriptstyle 0.3951}$ & ${\scriptstyle 0.6524}$ & ${\scriptstyle 0.1060}$ & ${\scriptstyle 0.4001}$ & ${\scriptstyle 0.4189}$ & ${\scriptstyle 0.3795}$\\
+\hline \hline 
+\multirow{2}{*}{\pbox{5cm}{\small{\tt $D^2$-seeding} \\($N=10k$)}} & mean & 
+$30.2519$ & $98.0837$ & $1.8372$ & $274.9108$ & $271.5379$ & $272.50$\\ \cline{2-8}
+& \small{sd} & ${\scriptstyle 0.3230}$ & ${\scriptstyle 0.4534}$ & ${\scriptstyle 0.1325}$ & ${\scriptstyle 0.5928}$ & ${\scriptstyle 0.4878}$ & ${\scriptstyle 0.6575}$\\
+\hline \hline 
+\multirow{2}{*}{\pbox{5cm}{\small{\tt $D^2$-seeding} \\($N=100k$)}} & mean & 
+$34.6420$ & $115.7657$ & $1.9183$ & $1509.3000$ & $1545.4000$ & $1511.4000$\\ \cline{2-8}
+& \small{sd} & ${\scriptstyle 0.4269}$ & ${\scriptstyle 0.6319}$ & ${\scriptstyle 0.1915}$ & ${\scriptstyle 20.5850}$ & ${\scriptstyle 28.8680}$ & ${\scriptstyle 20.8380}$\\
+\hline 
+\end{tabular}
+\caption{Running time (in seconds) of {\tt $D^2$-seeding}.}
+\label{table:6}
+\end{table}

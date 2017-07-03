@@ -1,0 +1,51 @@
+\begin{table}[h]
+\centering
+\begin{tabular}{| l | c | c | c || c | c || c | c |}
+\hline
+& & \multicolumn{2}{ c |}{{\bf MNIST}} & \multicolumn{2}{ c |}{{\bf CIFAR}} & \multicolumn{2}{ c |}{{\bf 3D}} \\ \cline{3-8}
+{\bf Algorithm} & & \pbox{1cm}{Cost\\\tiny{($\times 10^{10}$)}} & \pbox{1cm}{Time\\ \tiny(in sec.)} & \pbox{1cm}{Cost\\\tiny{($\times 10^{10}$)}} & \pbox{1cm}{Time\\ \tiny(in sec.)} & \pbox{1cm}{Cost\\\tiny{($\times 10^6$)}} & \pbox{1cm}{Time\\ \tiny(in sec.)}\\
+\hline \hline
+\multirow{2}{*}{\small{\tt Par-$k$-means++}} & mean & 
+$32.42$ & $1.91$ & $80.45$ & $5.68$ & $17.82$ & $0.25$\\ \cline{2-8}
+& \small{sd} & ${\scriptstyle 1.16}$ & ${\scriptstyle 0.51}$ & ${\scriptstyle 6.43}$ & ${\scriptstyle 0.47}$ & ${\scriptstyle 6.36}$ & ${\scriptstyle 0.03}$\\
+\hline \hline 
+%
+\multirow{2}{*}{\pbox{5cm}{\small{\tt $k$-means$||$} \\ \tiny{($\ell=2k$, $r=5$)}}} & mean & 
+$31.21$ & $10.68$ & $68.55$ & $34.29$ & $15.72$ & $2.92$\\ \cline{2-8}
+& \small{sd} & ${\scriptstyle 1.02}$ & ${\scriptstyle 1.28}$ & ${\scriptstyle 2.89}$ & ${\scriptstyle 3.51}$ & ${\scriptstyle 5.06}$ & ${\scriptstyle 0.48}$\\
+\hline \hline 
+%
+\multirow{2}{*}{\pbox{5cm}{\small{\tt Par-$D^2$-Seeding} \\ \tiny($N=10k$)}} & mean & 
+$21.23$ & $2.26$ & $53.80$ & $6.72$ & $11.98$ & $0.27$\\ \cline{2-8}
+& \small{sd} & ${\scriptstyle 0.49}$ & ${\scriptstyle 0.60}$ & ${\scriptstyle 1.33}$ & ${\scriptstyle 0.77}$ & ${\scriptstyle 2.02}$ & ${\scriptstyle 0.06}$\\
+\hline
+\end{tabular}
+%\newline
+%\vspace*{0.2cm}
+%\newline
+\bigskip
+\vspace*{0.01cm}
+\noindent
+\begin{tabular}{| l | c | c | c || c | c || c | c |}
+\hline
+& & \multicolumn{2}{ c |}{{\bf Birch1}} & \multicolumn{2}{ c |}{{\bf Birch2}} & \multicolumn{2}{ c |}{{\bf Birch3}} \\ \cline{3-8}
+{\bf Algorithm} & & \pbox{1cm}{Cost\\\tiny{($\times 10^{12}$)}} & \pbox{1cm}{Time\\ \tiny(in sec.)} & \pbox{1cm}{Cost\\\tiny{($\times 10^{10}$)}} & \pbox{1cm}{Time\\ \tiny(in sec.)} & \pbox{1cm}{Cost\\\tiny{($\times 10^{12}$)}} & \pbox{1cm}{Time\\ \tiny(in sec.)}\\
+\hline \hline
+\multirow{2}{*}{\small{\tt Par-$k$-means++}} & mean & 
+$189.54$ & $27.39$ & $165.16$ & $26.83$ & $67.78$ & $25.55$\\ \cline{2-8}
+& \small{sd} & ${\scriptstyle 8.76}$ & ${\scriptstyle 2.33}$ & ${\scriptstyle 21.25}$ & ${\scriptstyle 2.27}$ & ${\scriptstyle 4.72}$ & ${\scriptstyle 3.24}$\\
+\hline \hline 
+%
+\multirow{2}{*}{\pbox{5cm}{\small{\tt $k$-means$||$} \\ \tiny{($\ell=2k$, $r=5$)}}} & mean & 
+$190.09$ & $9.93$ & $156.26$ & $10.15$ & $67.73$ & $10.21$\\ \cline{2-8}
+& \small{sd} & ${\scriptstyle 10.86}$ & ${\scriptstyle 0.65}$ & ${\scriptstyle 20.28}$ & ${\scriptstyle 0.72}$ & ${\scriptstyle 3.43}$ & ${\scriptstyle 0.76}$\\
+\hline \hline 
+%
+\multirow{2}{*}{\pbox{5cm}{\small{\tt Par-$D^2$-Seeding} \\ \tiny{($N=10k$)}}} & mean & 
+$120.63$ & $37.16$ & $50.40$ & $36.51$ & $45.66$ & $38.50$\\ \cline{2-8}
+& \small{sd} & ${\scriptstyle 8.76}$ & ${\scriptstyle 2.33}$ & ${\scriptstyle 1.84}$ & ${\scriptstyle 1.35}$ & ${\scriptstyle 1.09}$ & ${\scriptstyle 1.52}$\\
+\hline
+\end{tabular}
+\caption{Running time and cost for parallel algorithms. The number of machine threads used is $M = 40$.}
+\label{table:8}
+\end{table}

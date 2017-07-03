@@ -1,0 +1,19 @@
+\begin{table}[h]
+\centering
+\begin{tabular}{| l | c | c | c | c | c | c | c |}
+\hline
+ $\mathbf{N}$ & & \pbox{2cm}{{\bf MNIST} \\\tiny($\times 10^{10}$)} & \pbox{2cm}{{\bf CIFAR} \\ \tiny{($\times 10^{10}$)}} & \pbox{2cm}{{\bf 3D} \\ \tiny{($\times 10^6$)}} & \pbox{2cm}{{\bf Birch1} \\ \tiny{($\times 10^{12}$)}} & \pbox{2cm}{{\bf Birch2} \\\tiny{($\times 10^{10}$)}} & \pbox{2cm}{{\bf Birch3} \\ \tiny{($\times 10^{12}$)}} \\
+\hline \hline
+\multirow{2}{*}{$k$} & mean & $32.39$ & $80.90$ & $15.98$ & $187.67$ & $158.02$ & $66.45$\\ \cline{2-8}
+& \small{sd} & ${\scriptstyle 1.31}$ & ${\scriptstyle 6.11}$ & ${\scriptstyle 5.05}$ & ${\scriptstyle 7.88}$ & ${\scriptstyle 16.68}$ & ${\scriptstyle 3.47}$\\
+\hline \hline 
+\multirow{2}{*}{$10k$} & mean & $21.19$ & $53.92$ & $11.89$ & $120.39$ & $49.76$ & $45.35$\\ \cline{2-8}
+& \small{sd} & ${\scriptstyle 4.45}$ & ${\scriptstyle 1.71}$ & ${\scriptstyle 2.71}$ & ${\scriptstyle 3.48}$ & ${\scriptstyle 1.16}$ & ${\scriptstyle 1.10}$\\
+\hline \hline 
+\multirow{2}{*}{$100k$} & mean & $21.18$ & $53.37$ & $11.51$ & $121.50$ & $50.30$ & $45.59$\\ \cline{2-8}
+& \small{sd} & ${\scriptstyle 4.12}$ & ${\scriptstyle 1.37}$ & ${\scriptstyle 1.76}$ & ${\scriptstyle 3.41}$ & ${\scriptstyle 1.80}$ & ${\scriptstyle 1.09}$\\
+\hline 
+\end{tabular}
+\caption{This table gives the cost of the solution produced by our seeding algorithm as a function of the input parameter $N$.}
+\label{table:2}
+\end{table}

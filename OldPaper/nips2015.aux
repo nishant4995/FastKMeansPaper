@@ -1,0 +1,89 @@
+\relax 
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\citation{das08}
+\citation{KanungoMNPSW02}
+\citation{charikar02}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}}
+\@writefile{toc}{\contentsline {paragraph}{$k$-means}{1}{section*.1}}
+\citation{av07}
+\citation{jks}
+\citation{av07}
+\citation{jks}
+\citation{jks}
+\citation{jks}
+\citation{inaba}
+\@writefile{toc}{\contentsline {paragraph}{Seeding}{2}{section*.2}}
+\@writefile{toc}{\contentsline {paragraph}{Parallel algorithm}{2}{section*.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}The Algorithm}{2}{section.2}}
+\citation{jks}
+\citation{jks}
+\citation{mnist}
+\citation{cifar}
+\citation{3D}
+\citation{birch}
+\citation{birch}
+\citation{birch}
+\@writefile{lop}{\contentsline {Algorithm}{\numberline {2.1}{\ignorespaces Our seeding algorithm. $N$ is an input parameter that may be adjusted for performance/quality.}}{3}{Algorithm.2.1}}
+\newlabel{fig:seed}{{2.1}{3}{The Algorithm\relax }{Algorithm.2.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experimental Analysis}{3}{section.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Datasets and machine}{3}{subsection.3.1}}
+\@writefile{lop}{\contentsline {Algorithm}{\numberline {2.2}{\ignorespaces Parallel version of our seeding algorithm. $N$ is an input parameter and $M$ is a global environment variable indicating the number of hardware-level threads available.}}{4}{Algorithm.2.2}}
+\newlabel{fig:par-seed}{{2.2}{4}{The Algorithm\relax }{Algorithm.2.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces (a) First center (red triangle) has been chosen in iteration $1$ (b) Points (in gray) are sampled with $D^2$-sampling (c) The sampled points are clustered (d) Centroid of the largest cluster is chosen as the second center.}}{4}{figure.1}}
+\newlabel{fig:illustration}{{1}{4}{(a) First center (red triangle) has been chosen in iteration $1$ (b) Points (in gray) are sampled with $D^2$-sampling (c) The sampled points are clustered (d) Centroid of the largest cluster is chosen as the second center}{figure.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Parameter $N$}{4}{subsection.3.2}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Datasets used for evaluation in this work.}}{5}{table.1}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces This table gives the cost of the solution produced by our seeding algorithm as a function of the input parameter $N$.}}{5}{table.2}}
+\newlabel{table:2}{{2}{5}{This table gives the cost of the solution produced by our seeding algorithm as a function of the input parameter $N$}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Cost, number of lloyds iterations, and running time}{5}{subsection.3.3}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces This table gives the cost of the solution produced by the seeding algorithms.}}{5}{table.3}}
+\newlabel{table:3}{{3}{5}{This table gives the cost of the solution produced by the seeding algorithms}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces This table gives the cost of the solution produced by the Lloyds algorithm with the initial centers obtained using the above seeding algorithms.}}{6}{table.4}}
+\newlabel{table:4}{{4}{6}{This table gives the cost of the solution produced by the Lloyds algorithm with the initial centers obtained using the above seeding algorithms}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces This table gives the number of lloyds steps until convergence when the algorithm is executed with the seed produced by the above algorithms.}}{6}{table.5}}
+\newlabel{table:5}{{5}{6}{This table gives the number of lloyds steps until convergence when the algorithm is executed with the seed produced by the above algorithms}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Parallel implementation and $M$}{6}{subsection.3.4}}
+\@writefile{toc}{\contentsline {paragraph}{Parallel architecture}{6}{section*.4}}
+\citation{bahmani}
+\citation{bahmani}
+\citation{bahmani}
+\citation{bahmani}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Running time (in seconds) of {\tt  $D^2$-seeding}.}}{7}{table.6}}
+\newlabel{table:6}{{6}{7}{Running time (in seconds) of {\tt $D^2$-seeding}}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Running time (in seconds) of \texttt  {Par-$D^2$-seeding} as a function of $M$. $N$ is set to be $10k$.}}{7}{table.7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Analysis of \texttt  {Par-$D^2$-Seeding}}{7}{subsection.3.5}}
+\citation{jks}
+\bibstyle{plain}
+\bibdata{biblio}
+\bibcite{birch}{1}
+\bibcite{av07}{2}
+\bibcite{bahmani}{3}
+\bibcite{charikar02}{4}
+\@writefile{lop}{\contentsline {Algorithm}{\numberline {3.1}{\ignorespaces The {\tt  $k$-means++seed}\ and {\tt  Par-$k$-means++} algorithms. In the parallel implementation, $M$ indicates the number of hardware level threads available.}}{8}{Algorithm.3.1}}
+\newlabel{fig:kmpp}{{3.1}{8}{Analysis of \texttt {Par-$D^2$-Seeding}\relax }{Algorithm.3.1}{}}
+\@writefile{lop}{\contentsline {Algorithm}{\numberline {3.2}{\ignorespaces The {\tt  $k$-means$||$} algorithm customized for our parallel setting. Recommended values\nobreakspace  {}\cite  {bahmani} of $\ell $ and $r$ are $\ell = 2k$ and $r=5$. $M$ indicates the number of parallel threads available.}}{8}{Algorithm.3.2}}
+\newlabel{fig:scalable}{{3.2}{8}{Analysis of \texttt {Par-$D^2$-Seeding}\relax }{Algorithm.3.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusion}{8}{section.4}}
+\bibcite{das08}{5}
+\bibcite{inaba}{6}
+\bibcite{jks}{7}
+\bibcite{KanungoMNPSW02}{8}
+\bibcite{3D}{9}
+\bibcite{cifar}{10}
+\bibcite{mnist}{11}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Running time and cost for parallel algorithms. The number of machine threads used is $M = 40$.}}{9}{table.8}}
+\newlabel{table:8}{{8}{9}{Running time and cost for parallel algorithms. The number of machine threads used is $M = 40$}{table.8}{}}

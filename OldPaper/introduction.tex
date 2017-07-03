@@ -1,0 +1,63 @@
+\section{Introduction}
+
+\paragraph{$k$-means} Clustering is one of the most basic data processing tasks. 
+So, any improvement in quality or efficiency in the popular clustering techniques has a significant impact.
+We consider the $k$-means problem and the $k$-means algorithm (also known as the Lloyds algorithm) that are the one of the most popular clustering problems and solutions respectively, known in the Machine Learning literature.
+The $k$-means problem is defined in the following manner: given a set of points $X \in \mathbb{R}^d$ and an integer $k$, find a set of centers $C \subset \mathbb{R}^d$ such that the cost 
+$$\Phi_C(X) \stackrel{def.}{=} \sum_{x \in X} \min_{c \in C} ||x - c||^2$$ 
+is minimized.
+These $k$ centers induce a natural partition of the data points (points that are closest to the same center are in the same partition).
+This is also known as the {\em Voronoi} partition.
+The computational hardness of this problem is well understood and it is known that the problem is $\mathsf{NP}$-hard \cite{das08}.
+Various approximation algorithms for this problem is known \cite{KanungoMNPSW02,charikar02}. 
+However, the algorithm that is used to solve the $k$-means problem is practice is the $k$-means algorithm.\footnote{Unfortunately the algorithm has the same name as the problem. 
+So, the reader should be careful while reading.}
+This is a local search algorithm that starts with an arbitrary set of $k$ centers and then locally shifts these centers so that the cost of decreases and continue until no local improvement is possible.
+Even though this algorithm gives good results in practice, the algorithm does not provide any guarantees in terms of performance or quality with respect to the the cost function.
+This basically means that the $k$-means algorithm may take a huge amount of time to converge or the the solution produced has arbitrarily higher cost compared to the best solution. 
+One way to ensure solution quality is to initialise the $k$-means algorithm with $k$ centers that satisfies some minimal quality guarantee. 
+It is known that the $k$-means algorithm only improves the cost while execution. 
+So, at the end, the quality guarantee follows from the initial centers.
+In some sense, we get the best of both worlds -- $k$-means algorithm ensures good practical performance and initial centers ensures some minimal quality guarantee.
+
+\noindent
+
+\paragraph{Seeding} So now the question shifts to how to pick the initial centers for the $k$-means algorithm? 
+This is sometimes known as the ``seeding" algorithm.
+The requirements of such a seeding algorithm is that it should be (i) fast, (ii) simple, and (iii) give some quality guarantee.
+\footnote{Simplicity is a subjective measure and hence data scientists might not be comfortable with such a requirement.
+However, it is an important measure since simpler techniques have advantages when it comes to implementation and debugging.}
+There has been a significant amount of work in obtaining algorithms that give quality guarantees. 
+That is, obtaining approximation algorithms. 
+So, as far as requirement (iii) is concerned, there are many candidate algorithms. 
+However, most of these algorithms do not satisfy (i) and (ii).
+One of the most popular algorithms that seem to satisfy all the properties and is popularly used as a seeding algorithm for the $k$-means algorithm is the \kmpp\ algorithm \cite{av07} that uses a simple sampling based approach. 
+Here, the $k$ points are sampled in the following manner: Pick the first center uniformly at random and for $i > 1$, pick a point $p$ to be the $i^{th}$ center with probability proportional to the squared Euclidean distance of $p$ from the nearest center from among the set of previously chosen $(i-1)$ centers $C_{i-1}$ (i.e., with probability $\frac{\Phi_{C_{i-1}}(\{p\})}{\Phi_{C_{i-1}}(X)}$). 
+This sampling procedure is also called the $D^2$-sampling~\cite{jks}.
+Arthur and Vassilvitskii~\cite{av07} showed that this sampling procedure gives an approximation factor of $O(\log{k})$ in expectation.
+This sampling based idea was further developed by Jaiswal \etal~\cite{jks} and they gave a sampling based algorithm that gives a solution that is arbitrarily close to the optimal solution in terms of the cost.
+That is, they give a $(1 + \veps)$-approximation algorithm for arbitrary small $\veps$.
+Moreover, their algorithm has another advantage that the algorithm has an inherent massively parallel version.
+However, the running time of their algorithm is $O(nd \cdot 2^{\tilde{O}(k/\varepsilon}))$ which is large for practical relevance even with parallelisation. 
+In this work, we explore a simple modified version of their algorithm with much smaller 
+running time. 
+Note that the strong approximation guarantee of the original algorithm is compromised in this process. 
+However, through empirical analysis on large datasets we build some confidence that the quality of the solution produced is good.
+We do extensive comparative analysis with the other seeding techniques.
+The modified algorithm remains inherently parallel and we do a parallel implementation of our algorithm that we discuss next.
+Note that the $k$-means algorithm runs in a number of rounds and these rounds are sequential.
+So, if the seed $k$ centers result in smaller number of rounds and furthermore the seeding algorithm is parallel, then that means that we are effectively using the parallel architecture for $k$-means clustering. 
+We also do a comparative analysis of the decrease in the number of rounds of the $k$-means algorithm (i.e., number of Lloyd iterations).
+
+\paragraph{Parallel algorithm}
+The parallel algorithms discussed in this work are designed for a shared memory parallel programming model, where all parallel computation threads/processes can view data written into the shared memory by any of the threads/processes.
+Such shared-memory multi/many-core processors are widely available these days.
+Designing parallel algorithms for important tasks such as clustering that exploit this readily available parallelism has gained importance.
+
+
+
+
+
+
+
+

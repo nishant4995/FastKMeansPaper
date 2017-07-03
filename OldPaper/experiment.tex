@@ -1,0 +1,201 @@
+\section{Experimental Analysis}
+
+\subsection{Datasets and machine}
+We use the following datasets for evaluating our algorithm.
+Note that the first three datasets are real datasets and the last three are synthetically generated datasets.
+The sequential algorithms in this work were implemented and evaluated on a single workstation with a dual-socket Intel\textregistered Xeon\textregistered E5-2680v2, with 20 cores and 40 threads, and operating at 2.8GHz running Ubuntu 14.04. We build our code using the GCC 4.8.2 and use OpenMP based thread parallelism.
+
+\input{Tables/01-datasets}
+
+
+
+
+
+\subsection{Parameter $N$}
+Before we start the comparative analysis, we would like to discuss the parameter $N$ of our \texttt{$D^2$-seeding} algorithm.
+We will pick $N > k$.\footnote{This would avoid problems in step 2(b).
+However, note that if $N \leq k$, then our algorithm is basically the \kmpp\ algorithm. 
+This is because in each iteration, we pick a point sampled with $D^2$-sampling as the next center.
+So, \kmpp\ algorithm is one of the extreme cases of our algorithm.}
+How large should $N$ be as a function of $k$? Note that the larger the number of points from an uncovered cluster that we are able to isolate, the better is the centroid of these isolated points with respect to this uncovered cluster. 
+The number of points from each uncovered cluster will be clearly larger for larger values of $N$.
+However, the running time of the algorithm grows as $N$ increases. 
+%Moreover, the ability of \kmpp\ to isolate the points in the most prominent uncovered cluster (in terms of current cost of clusters) might diminish with increasing number of sampled points.
+So, there is a quality/performance tradeoff and the user should pick a value of $N$ that gives the best results.
+We give cost analysis for values of $N$ that are multiples of $k$ in Table~\ref{table:2}.
+Since our algorithm is randomized, we give the mean and standard deviation of the cost over $20$ runs over the datasets. 
+
+We note that there is a significant improvement as $N$ is increased from $k$ to $10k$. 
+However, the improvement is not that significant when comparing $N=10k$ and $N = 100k$.
+We suggest using $N = 10k$ as a standard input for our algorithm. 
+However, the user may adjust this parameter depending on the database for best performance. The supplementary material gives a finer grained analysis of cost w.r.t. $N$.
+
+\input{Tables/02-parameter-N}
+
+
+
+
+
+
+
+
+\subsection{Cost, number of lloyds iterations, and running time}
+Recall that for a given set $C$ of centers, the cost is given by $\Phi_{C}(X) = \sum_{x \in X} \min_{c \in C} ||x - c||^2$.
+Given cost of the solution as an evaluation metric, we compare our algorithm with \kmpp\  which is widely believed to give the best results and is used in practice to obtain the seed for the $k$-means algorithm. 
+For comparison purposes, we also give results for the \texttt{Random} procedure that picks $k$ centers uniformly at random and is the simplest seeding algorithm.
+Since all the three procedures are randomized, we give the mean and standard deviation measured over $20$ runs. 
+The cost comparison is given in Table~\ref{table:3}.
+We note that the our algorithm (with $N=10k$) gives much better results compared to the other algorithms.
+
+\input{Tables/03-initialization-cost}
+
+We also compare cost of the solution obtained on running Lloyds iterations until convergence, post the seeding step.
+The results of this comparison are given in Table~\ref{table:4}.
+We note that for the synthetic datasets, we get a significant improvement. 
+However, for the real datasets the final costs obtained are comparable.
+Another interesting observation to be made when studying the experimental results in Tables~\ref{table:3} and \ref{table:4} is that cost of the solution produced by our seeding algorithm (with $N = 10k$) in Table~\ref{table:3} is consistently close to the best solution produced by the Lloyds algorithm in Table~\ref{table:4}.
+
+\input{Tables/04-initialization-and-lloyds}
+
+Since our goal is to use our algorithm as a seeding algorithm for the $k$-means algorithm which is inherently sequential, the number of iterations of Lloyds algorithm that need to be run for convergence is an important metric. 
+We say that the $k$-means algorithm has converged if the decrease in the cost is less than $0.0001$ times the current cost.
+We do a comparative analysis of the number of Lloyds iterations.
+The results of this comparison is given in Table~\ref{table:5}.
+We note that our algorithm (with $N=10k$) gives improvements for all datasets.
+These improvements are significant for the synthetic Birch datasets whereas the improvements are small for the real datasets.
+
+\input{Tables/05-lloyds-iterations}
+
+We also do a running time comparison of the three algorithms.
+The results are given in Table~\ref{table:6}.
+Since our algorithm does more sampling work than \kmpp, the running time of our algorithm is of course larger. 
+However, one should note that the running time is not more than twice as that of the \kmpp\ algorithm.
+
+\input{Tables/06-sequential-running-time}
+
+\subsection{Parallel implementation and $M$}
+Consider \texttt{Par-$D^2$-seeding}, the parallel version of our algorithm.
+$M$ denotes the number of parallel threads executed.
+The parallel steps in the algorithm are steps 3(b) and 3(e). 
+We do an analysis of the running time as a function of the number of threads used in this parallel step.
+The maximum number of threads in our analysis is $40$ since that is the total number of  hardware level threads available in the architecture that we use. 
+This is just to understand the behaviour of our algorithm in terms of the amount of parallelism available.
+
+\input{Tables/07-machines-table}
+
+\paragraph{Parallel architecture} The {\tt Par-$D^{2}$-seeding} algorithm and other parallel algorithms discussed in this work are designed for a shared memory parallel programming model, where all parallel computation threads/processes can view data written into the shared memory by any of the threads/processes.
+Examples of such systems are shared-memory multi-/many-core processors like Intel\textregistered Xeon\textregistered CPUs and Xeon Phi\texttrademark  coprocessors, and distributed shared memory systems like those using global arrays and partitioned global address space (PGAS) (\url{http://www.pgas.org}).    
+In this work we implement the algorithms and conduct experiments on an Intel\textregistered Xeon\textregistered E5-2680v2 processor which supports upto 40 concurrent threads programmed by C++/OpenMP. 
+The machine has $2$ sockets each with $10$ cores. Each core can support $2$ hyperthreads. 
+So, the machine has effectively $20$ cores and $40$ threads. 
+Note that this is the reason for a disproportionate running time decrease when $M$ increases from $20$ to $40$.
+Moreover there is a serial segment in our algorithm since we choose not to parallelize step 3(f) (\kmpp\ step), and this becomes significant when $k$ (and hence $N$) is large as in case of Birch data-sets. 
+Hence we do not witness linear scaling with increase in number of threads.
+Finally, we believe that the algorithms proposed in this work are generic and applicable to any other system having shared memory parallelism, and can be easily extended to a message passing paradigm as well.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Analysis of \texttt{Par-$D^2$-Seeding}}
+As far as parallel seeding algorithms for $k$-means is concerned, the most notable and recent algorithm is the {\tt $k$-means$||$} algorithm of Bahmani~\etal~\cite{bahmani}.
+We compare the running time and cost of our parallel algorithm with parallel version of \kmpp, and \texttt{$k$-means$||$}. 
+The pseudocodes for \kmpp\ and its parallel version are are given in Algorithm~\ref{fig:kmpp}. 
+Algorithm~\ref{fig:scalable} gives the formal description of the {\tt $k$-means$||$} (Algorithm 2 in \cite{bahmani}) customised for our parallel setting.
+
+\renewcommand{\sp}{{\hspace*{1 mm}}}
+\newcommand{\append}{{\tt append}}
+\newcommand{\pr}{\mathbf{Pr}}
+
+  \begin{Algorithm}[ht]
+    \begin{boxedminipage}{0.40\linewidth}
+      {\kmpp(X, k)} : \medskip\\
+       \sp \sp 1. $C_0 \leftarrow \{\}$ \\ 
+       \sp \sp 2. {\bf For} $i$ $\leftarrow$ $1$ to $k$ \\
+       \sp \sp \sp \sp \sp (a)  Sample a point $p$ from $X$ using \\
+       \sp \sp \sp \sp \sp \sp \sp \sp \sp $D^2$-sampling w.r.t. $C_{i-1}$\\
+       \sp \sp \sp \sp \sp (b)  $c_i \leftarrow p$; $C_{i} \leftarrow C_{i-1} \cup \{c_i\}$\\
+       \sp \sp 3. Return $C_k$ \\\\\\\\\\\\\\
+      \end{boxedminipage}      
+       \begin{boxedminipage}{0.59\linewidth}
+     {\bf {\tt Par-$k$-means++(X, k)} :} \medskip\\
+       \sp \sp 1. $C_0 \leftarrow \{\}$ \\ 
+       \sp \sp 2. Let $P_j = \left\{X\left[{\frac{(j-1)|X|}{M}}\right], ..., X\left[{\frac{j|X|}{M}}\right]\right\}$ for all $j$\\
+       \sp \sp 3. {\bf For} $i$ $\leftarrow$ $1$ to $k$ \\
+       \sp \sp \sp \sp \sp (a) {\bf Parallel-for} $j$ $\leftarrow$ $1$ to $M$ \\
+       \sp \sp \sp \sp \sp \sp \sp \sp \sp \sp (i)  Sample a point $p_j$ from $P_j$ using $D^2$-sampling\\
+       \sp \sp \sp \sp \sp \sp \sp \sp \sp \sp \sp \sp \sp  w.r.t. $C_{i-1}$\\
+       \sp \sp \sp \sp \sp (b) Let $D$ denote the distribution over $\{1, ..., M\}$ s.t.\\
+       \sp \sp \sp \sp \sp \sp \sp \sp \sp \sp $\pr[j \leftarrow D] = \frac{\Phi_{C_{i-1}}\left(P_j\right)}{\Phi_{C_{i-1}}(X)}$\\
+       \sp \sp \sp \sp \sp (c) Sample $j$ from $D$ \\
+       \sp \sp \sp \sp \sp (d) $c_i \leftarrow p_j$; $C_{i} \leftarrow C_{i-1} \cup \{c_{i}\}$\\
+       \sp \sp 4. Return $C_k$
+      \end{boxedminipage} 
+      \caption{The \kmpp\ and {\tt Par-$k$-means++} algorithms. In the parallel implementation, $M$ indicates the number of hardware level threads available.}
+       \label{fig:kmpp}
+    \end{Algorithm}
+
+
+
+\begin{center}
+\begin{Algorithm}[ht]
+\begin{boxedminipage}{5.6in}
+{\tt $k$-means$||$($X, k, \ell, r$)}
+
+\hspace{0.1in} (1) $C \leftarrow $ sample a point uniformly at random from $X$.
+
+\hspace{0.1in} (2) {\bf For} $i \leftarrow $ $1$ to $r$:
+
+\hspace{0.3in} (a) $S \leftarrow \{\}$. \ \ \ \ {\it $S$ is a multiset.}
+
+\hspace{0.3in} (b) Use data-level parallelism as in step 3(b) of {\tt Par-$D^2$-seeding} to compute $\Phi_C(\{p\})$ $\forall p$.
+
+\hspace{0.3in} (c) {\bf Parallel-for} $j$ $\leftarrow$ $1$ to $|X|$:
+ 
+ \hspace{0.5in} (i) Add point $X[j]$ to $S$ with with probability  $\frac{\ell \cdot \Phi_{C}\left( \{X[j]\}\right)}{\Phi_C(X)}$.
+
+\hspace{0.3in} (d) $C \leftarrow C \cup S$.
+
+\hspace{0.1in} (5) For each $c \in C$ compute the weight of $c$ as the number of points in $X$ that has $c$ as the
+
+\hspace{0.3in}  closest center in $C$.
+
+\hspace{0.1in} (6) Cluster the weighted set $C$ using a weighted version of \kmpp\ and output the 
+
+\hspace{0.3in} resulting $k$ centers.
+\end{boxedminipage}
+\caption{The {\tt $k$-means$||$} algorithm customized for our parallel setting. Recommended values~\cite{bahmani} of $\ell$ and $r$ are $\ell = 2k$ and $r=5$. $M$ indicates the number of parallel threads available.}
+\label{fig:scalable}
+\end{Algorithm}
+\end{center}
+
+\vspace{-0.5in}
+
+The experimental results doing a comparison of cost and running time is given in Table~\ref{table:8}.
+We note that our algorithm does significantly better with respect to the cost. 
+As far as running time is concerned, on the real datasets our algorithm runs faster and this is reversed for the Birch datasets. 
+This is due to large values of $k$ in the Birch datasets.
+Note that our algorithm runs in $k$ iterations that are inherently sequential. 
+This property is also present in the \kmpp\ algorithm.
+{\tt $k$-means$||$} was designed precisely to remove this sequential iteration of length $k$ from \kmpp.
+So, it is not surprising that whenever the value of $k$ is large, the {\tt $k$-means$||$} algorithm will run faster. 
+However, our algorithm is more targeted towards getting a better quality solution which can also be seen from our experimental results.
+
+\input{Tables/08-parallel-table}
+
